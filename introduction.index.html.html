@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Fun Learning</title>
+<style>
+body { font-family: Arial, sans-serif; background: #fffbf0; margin: 0; padding: 0; }
+h1, h2 { text-align: center; color: #ff6f61; }
+.container { max-width: 900px; margin: auto; padding: 20px; }
+.flashcards { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 30px; }
+.card { width: 160px; height: 110px; cursor: pointer; perspective: 1000px; position: relative; }
+.card-inner { position: relative; width: 100%; height: 100%; text-align: center; transform-style: preserve-3d; transition: transform 0.6s; border-radius: 10px; }
+.card.flipped .card-inner { transform: rotateY(180deg); }
+.card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 10px; padding: 10px; box-sizing: border-box; font-weight: bold; text-align: center; }
+.card-front { background: #ffd966; font-size: 18px; }
+.card-back { background: #93c6e0; font-size: 16px; transform: rotateY(180deg); }
+.card button.audio-btn { margin-top: 6px; font-size: 14px; padding: 3px 8px; border-radius: 12px; border: none; cursor: pointer; background: #ff6f61; color: #fff; }
+.card button.audio-btn:hover { background: #ff3b2e; }
+
+.exercise { margin-bottom: 30px; padding: 15px; background: #c1f0f6; border-radius: 10px; }
+label { display: block; margin: 8px 0 4px; }
+input[type="text"] { padding: 5px; margin-right: 10px; }
+.reading-section { background: #fff0f5; padding: 15px; border-radius: 10px; margin-bottom: 30px; }
+.btn { background: #ff6f61; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
+.btn:hover { background: #ff3b2e; }
+.intro { background: #f9f9c5; padding: 15px; border-radius: 10px; margin-bottom: 30px; }
+.answer { margin-top:5px; font-style: italic; color:#333; }
+
+textarea { width: 100%; max-width: 100%; box-sizing: border-box; }
+
+#grammar-exercise input[type="text"] { width: 90%; max-width: 90%; }
+
+.pronunciation-text { font-size: 14px; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>English Fun Learning!</h1>
+
+<!-- Flashcards -->
+<h2>Vocabulary Flashcards</h2>
+<p style="text-align:center;">Kattints a kártyákra: fordulnak, és a 🔊 gombbal meghallgathatod az angol szót.</p>
+<div class="flashcards">
+
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        trendy
+        <button type="button" class="audio-btn" onclick="event.stopPropagation(); speakWord('trendy');">🔊</button>
+      </div>
+      <div class="card-back">stílusos</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        math
+        <button type="button" class="audio-btn" onclick="event.stopPropagation(); speakWord('math');">🔊</button>
+      </div>
+      <div class="card-back">matek</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        science
+        <button type="button" class="audio-btn" onclick="event.stopPropagation(); speakWord('science');">🔊</button>
+      </div>
+      <div class="card-back">tudomány</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        hamster
+        <button type="button" class="audio-btn" onclick="event.stopPropagation(); speakWord('hamster');">🔊</button>
+      </div>
+      <div class="card-back">törpehörcsög</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        parrot
+        <button type="button" class="audio-btn" onclick="event.stopPropagation(); speakWord('parrot');">🔊</button>
+      </div>
+      <div class="card-back">papagáj</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        ice skating
+        <button type="button" class="audio-btn" onclick="event.stopPropagation(); speakWord('ice skating');">🔊</button>
+      </div>
+      <div class="card-back">korcsolyázás</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        cycling
+        <button type="button" class="audio-btn" onclick="event.stopPropagation(); speakWord('cycling');">🔊</button>
+      </div>
+      <div class="card-back">kerékpározás</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        bungee jumping
+        <button type="button" class="audio-btn" onclick="event.stopPropagation(); speakWord('bungee jumping');">🔊</button>
+      </div>
+      <div class="card-back">bungee jumping</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        geography
+        <button type="button" class="audio-btn" onclick="event.stopPropagation(); speakWord('geography');">🔊</button>
+      </div>
+      <div class="card-back">földrajz</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        history
+        <button type="button" class="audio-btn" onclick="event.stopPropagation(); speakWord('history');">🔊</button>
+      </div>
+      <div class="card-back">történelem</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        ballet
+        <button type="button" class="audio-btn" onclick="event.stopPropagation(); speakWord('ballet');">🔊</button>
+      </div>
+      <div class="card-back">balett</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Pronunciation Practice (hallgatás + önálló mondás) -->
+<div class="exercise">
+  <h2>Pronunciation Practice</h2>
+  <p>Válassz egy szót, hallgasd meg, majd mondd ki hangosan! Gyakorold többször egymás után.</p>
+
+  <label for="pronunciation-word">Válaszd ki a szót:</label>
+  <select id="pronunciation-word">
+    <option value="trendy">trendy</option>
+    <option value="math">math</option>
+    <option value="science">science</option>
+    <option value="hamster">hamster</option>
+    <option value="parrot">parrot</option>
+    <option value="ice skating">ice skating</option>
+    <option value="cycling">cycling</option>
+    <option value="bungee jumping">bungee jumping</option>
+    <option value="geography">geography</option>
+    <option value="history">history</option>
+    <option value="ballet">ballet</option>
+  </select>
+
+  <div style="margin-top:10px;">
+    <button class="btn" type="button" onclick="listenSelectedWord()">🔊 Listen</button>
+  </div>
+
+  <p class="pronunciation-text">Mondd ki: próbáld meg minél hasonlóbban, mint amit hallasz!</p>
+</div>
+
+<!-- Grammar exercise: Translate into English -->
+<div class="exercise" id="grammar-exercise">
+  <h2>Grammar Exercise</h2>
+  <p><b>Írd le a mondatokat angolul!</b></p>
+
+  <label>1. Szeretek biciklizni.
+    <input type="text" id="g1" placeholder="I like ...">
+  </label>
+
+  <label>2. Mary nem szereti a földrajzot.
+    <input type="text" id="g2" placeholder="Mary ...">
+  </label>
+
+  <label>3. Minket érdekel a történelem.
+    <input type="text" id="g3" placeholder="We ...">
+  </label>
+
+  <label>4. Élvezem a korcsolyázást.
+    <input type="text" id="g4" placeholder="I enjoy ...">
+  </label>
+
+  <label>5. Tom nem élvezi nézni a balettet.
+    <input type="text" id="g5" placeholder="Tom ...">
+  </label>
+
+  <button class="btn" type="button" onclick="checkGrammar()">Check Answers</button>
+  <p id="grammar-result"></p>
+</div>
+
+<!-- Reading exercise -->
+<div class="reading-section">
+<h2>Reading Exercise</h2>
+
+<p><b>Feladat:</b></p>
+<ul>
+  <li>Olvasd el a szöveget!</li>
+  <li>Olvasd el a félmondatokat (A–G)!</li>
+  <li>Írd be a <b>megfelelő betűt</b> a megfelelő névhez!</li>
+  <li><b>Figyelj!</b> Három plusz mondat van, amire nem lesz szükséged.</li>
+</ul>
+
+<p><b>Text:</b></p>
+<p>
+<b>Anna</b>: Hi, I’m Anna. I’m 10 years old. I come from Budapest. I am an only child. I have a hamster. I like cycling and ice skating.<br>
+<b>Ben</b>: Hello, my name is Ben. I’m 11. I come from Debrecen. I have one brother. I have a parrot. I enjoy math and science.<br>
+<b>Clara</b>: Hi, I’m Clara. I’m 10 years old. I live in Szeged. I am an only child. I like ballet and geography. I enjoy reading books.<br>
+<b>David</b>: Hello, I’m David. I’m 11 years old. I come from Pécs. I have two sisters. I like bungee jumping and cycling. I have a dog.
+</p>
+
+<p><b>Sentences:</b></p>
+<p>
+A) enjoys math and science<br>
+B) is 12 years old<br>
+C) likes cycling and ice skating<br>
+D) has a cat<br>
+E) likes ballet and geography<br>
+F) comes from London<br>
+G) likes bungee jumping and cycling
+</p>
+
+<p><b>Match the sentences (A–G) to the names. Write only ONE letter for each name. There are 3 extra letters.</b></p>
+
+<ol>
+<li>Anna - <input type="text" id="rAnna" maxlength="1"></li>
+<li>Ben - <input type="text" id="rBen" maxlength="1"></li>
+<li>Clara - <input type="text" id="rClara" maxlength="1"></li>
+<li>David - <input type="text" id="rDavid" maxlength="1"></li>
+</ol>
+
+<button class="btn" onclick="checkReading()">Check Answers</button>
+<p id="reading-result"></p>
+</div>
+
+<!-- Writing / Self-introduction -->
+<div class="intro">
+<h2>Introduce Yourself</h2>
+<p>Write a short introduction using the new words (at least 2 sentences). After you click "Check", you will see a corrected version.</p>
+<textarea id="self-intro" rows="4" cols="50" placeholder="Hello, my name is ... I like ..."></textarea><br>
+<button class="btn" onclick="checkIntro()">Check</button>
+<p id="intro-result"></p>
+<p id="intro-correction" class="answer"></p>
+</div>
+
+<script>
+// Flip card
+function flipCard(card) {
+    card.classList.toggle('flipped');
+}
+
+// Text-to-speech for words
+function speakWord(word) {
+    if (!('speechSynthesis' in window)) {
+        alert('Sorry, your browser does not support speech playback.');
+        return;
+    }
+    var utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = 'en-US';
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+}
+
+function listenSelectedWord() {
+    var word = document.getElementById('pronunciation-word').value;
+    speakWord(word);
+}
+
+// --- GRAMMAR EXERCISE ---
+function normalizeSentence(str) {
+    return str
+        .trim()
+        .replace(/[.!?]/g,'')
+        .replace(/-/g,' ')
+        .replace(/\s+/g,' ')
+        .toLowerCase()
+        .replace(/’/g,"'")
+        .replace(/doesn't/g,"doesnt");
+}
+
+function checkGrammar() {
+    var correctRaw = {
+        g1: "I like cycling",
+        g2: "Mary doesn't like Geography",
+        g3: "We are interested in History",
+        g4: "I enjoy ice-skating",
+        g5: "Tom doesn't enjoy watching ballet"
+    };
+
+    var userAnswers = {
+        g1: document.getElementById('g1').value,
+        g2: document.getElementById('g2').value,
+        g3: document.getElementById('g3').value,
+        g4: document.getElementById('g4').value,
+        g5: document.getElementById('g5').value
+    };
+
+    var correctCount = 0;
+    for (var key in correctRaw) {
+        var userNorm = normalizeSentence(userAnswers[key]);
+        var correctNorm = normalizeSentence(correctRaw[key]);
+        if (userNorm === correctNorm) {
+            correctCount++;
+        }
+    }
+
+    var res = document.getElementById('grammar-result');
+    var text = "Correct: " + correctCount + "/5<br>";
+    text += "Megoldások:<br>";
+    text += "1) I like cycling.<br>";
+    text += "2) Mary doesn't like Geography.<br>";
+    text += "3) We are interested in History.<br>";
+    text += "4) I enjoy ice-skating.<br>";
+    text += "5) Tom doesn't enjoy watching ballet.";
+    res.innerHTML = text;
+}
+
+// --- READING EXERCISE ---
+var readingAttempts = 0;
+
+function checkReading() {
+    readingAttempts++;
+
+    // helyes betűk: C, A, E, G
+    var answers = {
+        rAnna: 'C',
+        rBen: 'A',
+        rClara: 'E',
+        rDavid: 'G'
+    };
+
+    var correctCount = 0;
+    for (var id in answers) {
+        var user = document.getElementById(id).value.trim().toUpperCase();
+        if (user === answers[id]) {
+            correctCount++;
+        }
+    }
+
+    var res = document.getElementById('reading-result');
+
+    if (correctCount === 4) {
+        res.innerHTML = "All correct! Well done! 🎉";
+        readingAttempts = 0;
+    } else if (readingAttempts < 3) {
+        res.innerHTML = "Not all correct. Try again! Attempt " + readingAttempts + " of 3.";
+    } else {
+        res.innerHTML =
+            "Correct answers:<br>" +
+            "Anna – C (likes cycling and ice skating)<br>" +
+            "Ben – A (enjoys math and science)<br>" +
+            "Clara – E (likes ballet and geography)<br>" +
+            "David – G (likes bungee jumping and cycling)<br>" +
+            "(B, D és F felesleges mondatok voltak.)";
+        readingAttempts = 0;
+    }
+}
+
+// --- WRITING / INTRO ---
+function autoCorrectIntro(text) {
+    var corrected = text;
+
+    corrected = corrected.replace(/\bi\b/g, "I");
+    corrected = corrected.replace(/\bi'm\b/gi, "I'm");
+    corrected = corrected.replace(/\bi am\b/gi, "I am");
+    corrected = corrected.replace(/\bi like\b/gi, "I like");
+
+    corrected = corrected.trim();
+    if (corrected.length > 0) {
+        corrected = corrected.charAt(0).toUpperCase() + corrected.slice(1);
+    }
+    if (corrected.length > 0 && !/[.!?]$/.test(corrected)) {
+        corrected += ".";
+    }
+    return corrected;
+}
+
+function checkIntro() {
+    var text = document.getElementById('self-intro').value.trim();
+    var feedbackEl = document.getElementById('intro-result');
+    var correctionEl = document.getElementById('intro-correction');
+
+    if (text.length === 0) {
+        feedbackEl.innerHTML = "Please write something about yourself.";
+        correctionEl.innerHTML = "";
+        return;
+    }
+
+    var corrected = autoCorrectIntro(text);
+    var feedback = "";
+
+    if (!/my name is/i.test(text) && !/i am/i.test(text) && !/i'm/i.test(text)) {
+        feedback += "Try to add a sentence with your name (e.g. \"Hello, my name is ...\").<br>";
+    }
+
+    if (!/i like/i.test(text)) {
+        feedback += "Try to add what you like (e.g. \"I like cycling.\").<br>";
+    }
+
+    if (feedback === "") {
+        feedback = "Great! Here is a slightly corrected version of your text:";
+    } else {
+        feedback = "Good job! Here are some tips and a corrected version of your text:<br>" + feedback;
+    }
+
+    feedbackEl.innerHTML = feedback;
+    correctionEl.innerHTML = corrected;
+}
+</script>
+</div>
+</body>
+</html>
